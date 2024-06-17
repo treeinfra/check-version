@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Simple color decorations.
-function dim() { echo "\033[2m$1\033[0m"; }
-function red() { echo "\033[31m$1\033[0m"; }
-function green() { echo "\033[32m$1\033[0m"; }
-function yellow() { echo "\033[33m$1\033[0m"; }
+dim() { echo "\033[2m$1\033[0m"; }
+red() { echo "\033[31m$1\033[0m"; }
+green() { echo "\033[32m$1\033[0m"; }
+yellow() { echo "\033[33m$1\033[0m"; }
 
 # Check whether package version had gotten.
 if [ -z "$package_version" ]; then
