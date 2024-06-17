@@ -1,0 +1,28 @@
+name: check version code
+description: >-
+  Check whether current Git commit has a tag
+  match the version code of current package.
+
+inputs:
+  manager:
+    description: package manager name
+    default: unknown
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: init package version handler
+      shell: bash
+      run: export package_version=""
+
+    - if: ${{ inputs.manager == 'cargo' }}
+      name: get cargo version
+      shell: bash
+      run: source $GITHUB_ACTION_PATH/cargo.sh
+
+    - name: shared tasks
+      shell: bash
+      run: $GITHUB_ACTION_PATH/shared.sh
+      env:
+        manager: ${{ inputs.manager }}
