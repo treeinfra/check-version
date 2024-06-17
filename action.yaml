@@ -23,6 +23,6 @@ runs:
 
     - name: shared tasks
       shell: bash
-      run: $GITHUB_ACTION_PATH/shared.sh
+      run: sh $GITHUB_ACTION_PATH/shared.sh
       env:
         manager: ${{ inputs.manager }}
