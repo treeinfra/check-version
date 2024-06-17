@@ -6,12 +6,14 @@ red() { echo "\033[31m$1\033[0m"; }
 green() { echo "\033[32m$1\033[0m"; }
 yellow() { echo "\033[33m$1\033[0m"; }
 
-# Check whether package version had gotten.
-if [ -z "$package_version" ]; then
-  red "cannot get package version on: $(yellow $manager)"
-  exit 1
+# Get package version according to the manager environment variable.
+if [ $manager = "cargo" ]; then
+  package_version=$(
+    cargo metadata --format-version 1 | jq -r '.packages[0].version'
+  )
 else
-  echo "$(dim "found package version:")" "$(green $package_version)"
+  red "unsupported package manager: $(yellow $manager)"
+  exit 1
 fi
 
 # Get all Git tags on current commit.

@@ -12,17 +12,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: init package version handler
-      shell: bash
-      run: export package_version=""
-
-    - if: ${{ inputs.manager == 'cargo' }}
-      name: get cargo version
-      shell: bash
-      run: source $GITHUB_ACTION_PATH/cargo.sh
-
-    - name: shared tasks
-      shell: bash
-      run: sh $GITHUB_ACTION_PATH/shared.sh
+    - shell: bash
+      run: sh $GITHUB_ACTION_PATH/action.sh
       env:
         manager: ${{ inputs.manager }}
