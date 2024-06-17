@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Simple color decorations.
 function dim() { echo "\033[2m$1\033[0m"; }
 function red() { echo "\033[31m$1\033[0m"; }
